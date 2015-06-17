@@ -127,8 +127,16 @@ th {
     page-break-after: avoid;
   }
 
+  .search-module-button>.caret,
+  .entry-see-more>.caret,
+  .dropup>.search-module-button>.caret,
+  .dropup>.entry-see-more>.caret {
+    border-top-color: #000 !important;
+  }
+
   .entry-header .categories a,
   .entry-header .date,
+  .id .hatena-id-link,
   .comment-user-id span,
   .hatena-bookmark-count {
     border: 1px solid #000;
@@ -539,7 +547,9 @@ th {
 }
 
 .entry-header-menu a,
-.leave-comment-title {
+.leave-comment-title,
+.search-module-button,
+.entry-see-more {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -562,8 +572,20 @@ th {
 
 .entry-header-menu a:focus,
 .leave-comment-title:focus,
+.search-module-button:focus,
+.entry-see-more:focus,
+.focus.search-module-button,
+.focus.entry-see-more,
 .entry-header-menu a:active:focus,
-.leave-comment-title:active:focus {
+.leave-comment-title:active:focus,
+.search-module-button:active:focus,
+.entry-see-more:active:focus,
+.search-module-button:active.focus,
+.entry-see-more:active.focus,
+.active.search-module-button:focus,
+.active.entry-see-more:focus,
+.active.focus.search-module-button,
+.active.focus.entry-see-more {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
@@ -571,92 +593,215 @@ th {
 
 .entry-header-menu a:hover,
 .leave-comment-title:hover,
+.search-module-button:hover,
+.entry-see-more:hover,
 .entry-header-menu a:focus,
-.leave-comment-title:focus {
+.leave-comment-title:focus,
+.search-module-button:focus,
+.entry-see-more:focus,
+.focus.search-module-button,
+.focus.entry-see-more {
   color: #333;
   text-decoration: none;
 }
 
 .entry-header-menu a:active,
-.leave-comment-title:active {
+.leave-comment-title:active,
+.search-module-button:active,
+.entry-see-more:active,
+.active.search-module-button,
+.active.entry-see-more {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
   box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
 }
 
-.entry-header-menu a {
+.disabled.search-module-button,
+.disabled.entry-see-more,
+[disabled].search-module-button,
+[disabled].entry-see-more,
+fieldset[disabled] .search-module-button,
+fieldset[disabled] .entry-see-more {
+  cursor: not-allowed;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+a.disabled.search-module-button,
+a.disabled.entry-see-more,
+fieldset[disabled] a.search-module-button,
+fieldset[disabled] a.entry-see-more {
+  pointer-events: none;
+}
+
+.entry-header-menu a,
+.search-module-button {
   color: #333;
   background-color: #fff;
   border-color: #ccc;
 }
 
-.entry-header-menu a:focus {
+.entry-header-menu a:focus,
+.search-module-button:focus,
+.focus.search-module-button {
   color: #333;
   background-color: #e6e6e6;
   border-color: #8c8c8c;
 }
 
-.entry-header-menu a:hover {
+.entry-header-menu a:hover,
+.search-module-button:hover {
   color: #333;
   background-color: #e6e6e6;
   border-color: #adadad;
 }
 
-.entry-header-menu a:active {
+.entry-header-menu a:active,
+.search-module-button:active,
+.active.search-module-button,
+.open>.dropdown-toggle.search-module-button {
   color: #333;
   background-color: #e6e6e6;
   border-color: #adadad;
 }
 
 .entry-header-menu a:active:hover,
-.entry-header-menu a:active:focus {
+.search-module-button:active:hover,
+.entry-header-menu a:active:focus,
+.search-module-button:active:focus,
+.search-module-button:active.focus,
+.active.search-module-button:hover,
+.active.search-module-button:focus,
+.active.focus.search-module-button,
+.open>.dropdown-toggle.search-module-button:hover,
+.open>.dropdown-toggle.search-module-button:focus,
+.open>.dropdown-toggle.focus.search-module-button {
   color: #333;
   background-color: #d4d4d4;
   border-color: #8c8c8c;
 }
 
-.entry-header-menu a:active {
+.entry-header-menu a:active,
+.search-module-button:active,
+.active.search-module-button,
+.open>.dropdown-toggle.search-module-button {
   background-image: none;
 }
 
-.leave-comment-title {
+.disabled.search-module-button,
+.disabled.search-module-button:hover,
+.disabled.search-module-button:focus,
+.disabled.focus.search-module-button,
+.disabled.search-module-button:active,
+.disabled.active.search-module-button,
+[disabled].search-module-button,
+[disabled].search-module-button:hover,
+[disabled].search-module-button:focus,
+[disabled].focus.search-module-button,
+[disabled].search-module-button:active,
+[disabled].active.search-module-button,
+fieldset[disabled] .search-module-button,
+fieldset[disabled] .search-module-button:hover,
+fieldset[disabled] .search-module-button:focus,
+fieldset[disabled] .focus.search-module-button,
+fieldset[disabled] .search-module-button:active,
+fieldset[disabled] .active.search-module-button {
+  background-color: #fff;
+  border-color: #ccc;
+}
+
+.search-module-button .badge {
+  color: #fff;
+  background-color: #333;
+}
+
+.leave-comment-title,
+.entry-see-more {
   color: #fff;
   background-color: #337ab7;
   border-color: #2e6da4;
 }
 
-.leave-comment-title:focus {
+.leave-comment-title:focus,
+.entry-see-more:focus,
+.focus.entry-see-more {
   color: #fff;
   background-color: #286090;
   border-color: #122b40;
 }
 
-.leave-comment-title:hover {
+.leave-comment-title:hover,
+.entry-see-more:hover {
   color: #fff;
   background-color: #286090;
   border-color: #204d74;
 }
 
-.leave-comment-title:active {
+.leave-comment-title:active,
+.entry-see-more:active,
+.active.entry-see-more,
+.open>.dropdown-toggle.entry-see-more {
   color: #fff;
   background-color: #286090;
   border-color: #204d74;
 }
 
 .leave-comment-title:active:hover,
-.leave-comment-title:active:focus {
+.entry-see-more:active:hover,
+.leave-comment-title:active:focus,
+.entry-see-more:active:focus,
+.entry-see-more:active.focus,
+.active.entry-see-more:hover,
+.active.entry-see-more:focus,
+.active.focus.entry-see-more,
+.open>.dropdown-toggle.entry-see-more:hover,
+.open>.dropdown-toggle.entry-see-more:focus,
+.open>.dropdown-toggle.focus.entry-see-more {
   color: #fff;
   background-color: #204d74;
   border-color: #122b40;
 }
 
-.leave-comment-title:active {
+.leave-comment-title:active,
+.entry-see-more:active,
+.active.entry-see-more,
+.open>.dropdown-toggle.entry-see-more {
   background-image: none;
+}
+
+.disabled.entry-see-more,
+.disabled.entry-see-more:hover,
+.disabled.entry-see-more:focus,
+.disabled.focus.entry-see-more,
+.disabled.entry-see-more:active,
+.disabled.active.entry-see-more,
+[disabled].entry-see-more,
+[disabled].entry-see-more:hover,
+[disabled].entry-see-more:focus,
+[disabled].focus.entry-see-more,
+[disabled].entry-see-more:active,
+[disabled].active.entry-see-more,
+fieldset[disabled] .entry-see-more,
+fieldset[disabled] .entry-see-more:hover,
+fieldset[disabled] .entry-see-more:focus,
+fieldset[disabled] .focus.entry-see-more,
+fieldset[disabled] .entry-see-more:active,
+fieldset[disabled] .active.entry-see-more {
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
+.entry-see-more .badge {
+  color: #337ab7;
+  background-color: #fff;
 }
 
 .entry-header .categories a,
 .entry-header .date,
+.id .hatena-id-link,
 .comment-user-id span,
 .hatena-bookmark-count {
   display: inline;
@@ -671,8 +816,57 @@ th {
   border-radius: .25em;
 }
 
+.id .hatena-id-link:empty,
+.comment-user-id span:empty,
+.hatena-bookmark-count:empty {
+  display: none;
+}
+
+.search-module-button .label,
+.entry-see-more .label,
+.search-module-button .entry-header .categories a,
+.entry-header .categories .search-module-button a,
+.entry-see-more .entry-header .categories a,
+.entry-header .categories .entry-see-more a,
+.search-module-button .entry-header .date,
+.entry-header .search-module-button .date,
+.entry-see-more .entry-header .date,
+.entry-header .entry-see-more .date,
+.btn .id .hatena-id-link,
+.id .btn .hatena-id-link,
+.entry-header-menu a .id .hatena-id-link,
+.id .entry-header-menu a .hatena-id-link,
+.leave-comment-title .id .hatena-id-link,
+.id .leave-comment-title .hatena-id-link,
+.search-module-button .id .hatena-id-link,
+.id .search-module-button .hatena-id-link,
+.entry-see-more .id .hatena-id-link,
+.id .entry-see-more .hatena-id-link,
+.btn .comment-user-id span,
+.comment-user-id .btn span,
+.entry-header-menu a .comment-user-id span,
+.comment-user-id .entry-header-menu a span,
+.leave-comment-title .comment-user-id span,
+.comment-user-id .leave-comment-title span,
+.search-module-button .comment-user-id span,
+.comment-user-id .search-module-button span,
+.entry-see-more .comment-user-id span,
+.comment-user-id .entry-see-more span,
+.btn .hatena-bookmark-count,
+.entry-header-menu a .hatena-bookmark-count,
+.leave-comment-title .hatena-bookmark-count,
+.search-module-button .hatena-bookmark-count,
+.entry-see-more .hatena-bookmark-count {
+  position: relative;
+  top: -1px;
+}
+
 .entry-header .categories a:hover,
-.entry-header .categories a:focus {
+.id a.hatena-id-link:hover,
+a.hatena-bookmark-count:hover,
+.entry-header .categories a:focus,
+.id a.hatena-id-link:focus,
+a.hatena-bookmark-count:focus {
   color: #fff;
   text-decoration: none;
   cursor: pointer;
@@ -687,13 +881,32 @@ th {
   background-color: #5e5e5e;
 }
 
+.id .hatena-id-link {
+  background-color: #5bc0de;
+}
+
+.id [href].hatena-id-link:hover,
+.id [href].hatena-id-link:focus {
+  background-color: #31b0d5;
+}
+
 .entry-header .date,
 .comment-user-id span {
   background-color: #f0ad4e;
 }
 
+.comment-user-id span[href]:hover,
+.comment-user-id span[href]:focus {
+  background-color: #ec971f;
+}
+
 .hatena-bookmark-count {
   background-color: #d9534f;
+}
+
+[href].hatena-bookmark-count:hover,
+[href].hatena-bookmark-count:focus {
+  background-color: #c9302c;
 }
 
 .breadcrumb {
@@ -1161,6 +1374,23 @@ body {
   text-decoration: none;
 }
 
+#blog-title #blog-description {
+  color: #fff;
+  text-align: center;
+  margin: 0px !important;
+  padding: 10px;
+  font-size: 18px;
+  background: #5BC0DE;
+}
+
+.hatena-module .hatena-module-body ul {
+  margin-left: -25px;
+}
+
+.entry-title-link {
+  color: #202020 !important;
+}
+
 #content #content-inner {
   margin-top: 20px;
 }
@@ -1173,6 +1403,10 @@ body {
 
 .entry-header .date a {
   color: #fff;
+}
+
+.search-module-input {
+  line-height: 25px;
 }
 
 .hatena-bookmark-count a {

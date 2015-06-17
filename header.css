@@ -2,3 +2,6 @@
     background: #F8F8F8 !important;
     border-color: #E7E7E7 !important;
 }
+.hatena-module-archive .hatena-urllist {
+  margin-left: 0px !important;
+}

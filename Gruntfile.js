@@ -14,7 +14,9 @@ var gruntConfig = {
   uncss: {
     dist: {
       options: {
-        ignore: [/entry-content/, /page-archive/, /page-about/, /#zenback/],
+        ignore: [/entry-content/, /page-archive/, /page-about/, /#zenback/,
+          /blog-description/, /entry-see-more/, /hatena-bookmark-count/, /search-module-input/, 
+          /search-module-button/, /comment-user-id/, /hatena-id-link/],
         stylesheets: ['blog.css']
       },
       files: {

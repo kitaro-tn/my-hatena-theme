@@ -54,6 +54,14 @@ body {
       text-decoration: none;
     }
   }
+  #blog-description {
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin: 0px !important;
+    padding: 10px;
+    font-size: 18px;
+    background: #5BC0DE;
+  }
 }
 #wrapper {
   @extend .col-md-9;
@@ -71,9 +79,21 @@ body {
   }
   .hatena-module-body {
     @extend .panel-body;
+    ul {
+      margin-left: -25px;
+    }
   }
 }
-
+.hatena-module-archive {
+  .hatena-module-body {
+    ul {
+      margin-left: 0px !important;
+    }
+  }
+}
+.entry-title-link {
+  color: #202020 !important;
+}
 #content {
   @extend .container;
   #content-inner {

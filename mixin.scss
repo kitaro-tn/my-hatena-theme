@@ -1,0 +1,161 @@
+// Core variables and mixins
+@import "bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+
+// Reset and dependencies
+@import "bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/print";
+// @import "bootstrap-sass/assets/stylesheets/bootstrap/glyphicons"; 
+
+// Core CSS
+@import "bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/type";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/code";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/grid";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/tables";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/forms";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/buttons";
+
+// Components
+@import "bootstrap-sass/assets/stylesheets/bootstrap/labels";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/breadcrumbs";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/pager";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/alerts";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/jumbotron";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/panels";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/list-group";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/navs";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/navbar";
+
+#header {
+  // @extend .navbar;
+  // @extend .navbar-default;
+  #header-body {
+      background-color: #F8F8F8;
+      border-color: #E7E7E7;
+  //   @extend .navbar-header;
+  }
+}
+#blog-title {
+  margin-bottom: 30px;
+  #title {
+    font-size: 60px;
+  }
+}
+#content-inner {
+  @extend .row;
+}
+#main {
+  @extend .col-md-9;
+}
+#box2 {
+  @extend .col-md-3;
+}
+#box2-inner {
+}
+.hatena-module {
+  @extend .panel;
+  @extend .panel-default;
+  .hatena-module-title {
+    @extend .panel-heading;
+  }
+  .hatena-module-body {
+    @extend .panel-body;
+  }
+}
+
+#container {
+  @extend .container;
+}
+.entry-content {
+  @extend .panel-body;
+  table {
+    @extend .table;
+  }
+}
+.entry-header-menu {
+  position: absolute;
+  top: 10px;
+  left: -60px;
+  a {
+    @extend .btn;
+    @extend .btn-default;
+  }
+}
+.entry-header {
+  //@extend .page-header;
+  @extend .panel-heading;
+  .categories {
+    a {
+      @extend .label;
+      @extend .label-default;
+    }
+  }
+  .date {
+    @extend .label;
+    @extend .label-warning;
+    a {
+      color: #fff;
+    }
+  }
+}
+.header-menu {
+  @extend .list-group;
+  li {
+    @extend .list-group-item;
+  }
+}
+.entry-footer {
+  @extend .panel-footer;
+}
+.entry-inner {
+  @extend .panel;
+  @extend .panel-default;
+ // margin-bottom: 20px;
+}
+.leave-comment-title {
+  @extend .btn;
+  @extend .btn-primary;
+}
+.pager-next {
+  @extend .next;
+}
+.pager-prev {
+  @extend .previous;
+}
+.id {
+  .hatena-id-link {
+    @extend .label;
+    @extend .label-info;
+  }
+}
+.comment-user-id {
+  span {
+    @extend .label;
+    @extend .label-warning;
+  }
+}
+.search-module-input {
+  line-height: 25px;
+}
+.search-module-button {
+  @extend .btn;
+  @extend .btn-default;
+}
+.entry-see-more {
+  @extend .btn;
+  @extend .btn-primary;
+}
+.hatena-bookmark-count {
+  @extend .label;
+  @extend .label-danger;
+  a {
+    color: #fff;
+  }
+}
+#footer {
+  clear: both;
+  text-align: center;
+  padding: 10px;
+  font-size: 80%;
+}

@@ -27,25 +27,35 @@
 //@import "bootstrap-sass/assets/stylesheets/bootstrap/navs";
 @import "bootstrap-sass/assets/stylesheets/bootstrap/navbar";
 
-#header {
-  // @extend .navbar;
-  // @extend .navbar-default;
-  #header-body {
-      background-color: #F8F8F8;
-      border-color: #E7E7E7;
-  //   @extend .navbar-header;
-  }
+body {
+  word-wrap:break-word;
 }
 #blog-title {
-  margin-bottom: 30px;
+//  margin-bottom: 30px;
   #title {
     font-size: 60px;
+    margin: 0px !important;
+    padding: 20px;
+    background: #5BC0DE;
+    text-align: center;
+    a {
+      color: #fff !important;
+    }
+    a:link {
+      text-decoration: none;
+    }
+    a:visited {
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+    a:active {
+      text-decoration: none;
+    }
   }
 }
-#content-inner {
-  @extend .row;
-}
-#main {
+#wrapper {
   @extend .col-md-9;
 }
 #box2 {
@@ -64,8 +74,12 @@
   }
 }
 
-#container {
+#content {
   @extend .container;
+  #content-inner {
+    @extend .row;
+    margin-top: 20px;
+  }
 }
 .entry-content {
   @extend .panel-body;
@@ -74,9 +88,9 @@
   }
 }
 .entry-header-menu {
-  position: absolute;
+  position: static;
   top: 10px;
-  left: -60px;
+  left: -45px;
   a {
     @extend .btn;
     @extend .btn-default;

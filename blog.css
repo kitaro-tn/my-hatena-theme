@@ -134,8 +134,8 @@ th {
     border-top-color: #000 !important;
   }
 
-  .entry-header .categories a,
-  .entry-header .date,
+  .categories a,
+  time,
   .id .hatena-id-link,
   .comment-user-id span,
   .hatena-bookmark-count {
@@ -270,6 +270,32 @@ ul ul {
   margin-bottom: 0;
 }
 
+.page-about .entry-content dl dd:before,
+.page-about .entry-content dl dd:after {
+  content: " ";
+  display: table;
+}
+
+.page-about .entry-content dl dd:after {
+  clear: both;
+}
+
+@media (min-width: 768px) {
+  .page-about .entry-content dl dt {
+    float: left;
+    width: 160px;
+    clear: left;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .page-about .entry-content dl dd {
+    margin-left: 180px;
+  }
+}
+
 blockquote {
   padding: 10px 20px;
   margin: 0 0 20px;
@@ -279,12 +305,6 @@ blockquote {
 
 blockquote p:last-child {
   margin-bottom: 0;
-}
-
-address {
-  margin-bottom: 20px;
-  font-style: normal;
-  line-height: 1.42857;
 }
 
 code,
@@ -799,8 +819,8 @@ fieldset[disabled] .active.entry-see-more {
   background-color: #fff;
 }
 
-.entry-header .categories a,
-.entry-header .date,
+.categories a,
+time,
 .id .hatena-id-link,
 .comment-user-id span,
 .hatena-bookmark-count {
@@ -824,14 +844,12 @@ fieldset[disabled] .active.entry-see-more {
 
 .search-module-button .label,
 .entry-see-more .label,
-.search-module-button .entry-header .categories a,
-.entry-header .categories .search-module-button a,
-.entry-see-more .entry-header .categories a,
-.entry-header .categories .entry-see-more a,
-.search-module-button .entry-header .date,
-.entry-header .search-module-button .date,
-.entry-see-more .entry-header .date,
-.entry-header .entry-see-more .date,
+.search-module-button .categories a,
+.categories .search-module-button a,
+.entry-see-more .categories a,
+.categories .entry-see-more a,
+.search-module-button time,
+.entry-see-more time,
 .btn .id .hatena-id-link,
 .id .btn .hatena-id-link,
 .entry-header-menu a .id .hatena-id-link,
@@ -861,10 +879,10 @@ fieldset[disabled] .active.entry-see-more {
   top: -1px;
 }
 
-.entry-header .categories a:hover,
+.categories a:hover,
 .id a.hatena-id-link:hover,
 a.hatena-bookmark-count:hover,
-.entry-header .categories a:focus,
+.categories a:focus,
 .id a.hatena-id-link:focus,
 a.hatena-bookmark-count:focus {
   color: #fff;
@@ -872,32 +890,29 @@ a.hatena-bookmark-count:focus {
   cursor: pointer;
 }
 
-.entry-header .categories a {
+.categories a {
   background-color: #777;
 }
 
-.entry-header .categories a[href]:hover,
-.entry-header .categories a[href]:focus {
+.categories a[href]:hover,
+.categories a[href]:focus {
   background-color: #5e5e5e;
 }
 
-.id .hatena-id-link {
+.id .hatena-id-link,
+.comment-user-id span {
   background-color: #5bc0de;
 }
 
 .id [href].hatena-id-link:hover,
-.id [href].hatena-id-link:focus {
+.comment-user-id span[href]:hover,
+.id [href].hatena-id-link:focus,
+.comment-user-id span[href]:focus {
   background-color: #31b0d5;
 }
 
-.entry-header .date,
-.comment-user-id span {
+time {
   background-color: #f0ad4e;
-}
-
-.comment-user-id span[href]:hover,
-.comment-user-id span[href]:focus {
-  background-color: #ec971f;
 }
 
 .hatena-bookmark-count {
@@ -943,7 +958,8 @@ a.hatena-bookmark-count:focus {
 }
 
 .hatena-module,
-.entry-inner {
+.entry-inner,
+.archive-entry {
   margin-bottom: 20px;
   background-color: #fff;
   border: 1px solid transparent;
@@ -986,235 +1002,505 @@ a.hatena-bookmark-count:focus {
   border-bottom-left-radius: 3px;
 }
 
-.entry-content .panel>table,
-.entry-content .hatena-module>table,
-.entry-content .entry-inner>table,
-.entry-content .panel>.table-responsive>table,
-.entry-content .hatena-module>.table-responsive>table,
-.entry-content .entry-inner>.table-responsive>table,
-.entry-content .panel>.panel-collapse>table,
-.entry-content .hatena-module>.panel-collapse>table,
-.entry-content .entry-inner>.panel-collapse>table {
+.archive-entry>.list-group,
+.archive-entry>.header-menu,
+.archive-entry>.panel-collapse>.list-group,
+.archive-entry>.panel-collapse>.header-menu {
   margin-bottom: 0;
 }
 
+.archive-entry>.list-group .list-group-item,
+.archive-entry>.header-menu .list-group-item,
+.archive-entry>.list-group .header-menu li,
+.header-menu .archive-entry>.list-group li,
+.archive-entry>.header-menu li,
+.archive-entry>.panel-collapse>.list-group .list-group-item,
+.archive-entry>.panel-collapse>.header-menu .list-group-item,
+.archive-entry>.panel-collapse>.list-group .header-menu li,
+.header-menu .archive-entry>.panel-collapse>.list-group li,
+.archive-entry>.panel-collapse>.header-menu li {
+  border-width: 1px 0;
+  border-radius: 0;
+}
+
+.archive-entry>.list-group:first-child .list-group-item:first-child,
+.archive-entry>.header-menu:first-child .list-group-item:first-child,
+.archive-entry>.list-group:first-child .header-menu li:first-child,
+.header-menu .archive-entry>.list-group:first-child li:first-child,
+.archive-entry>.header-menu:first-child li:first-child,
+.archive-entry>.panel-collapse>.list-group:first-child .list-group-item:first-child,
+.archive-entry>.panel-collapse>.header-menu:first-child .list-group-item:first-child,
+.archive-entry>.panel-collapse>.list-group:first-child .header-menu li:first-child,
+.header-menu .archive-entry>.panel-collapse>.list-group:first-child li:first-child,
+.archive-entry>.panel-collapse>.header-menu:first-child li:first-child {
+  border-top: 0;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
+.archive-entry>.list-group:last-child .list-group-item:last-child,
+.archive-entry>.header-menu:last-child .list-group-item:last-child,
+.archive-entry>.list-group:last-child .header-menu li:last-child,
+.header-menu .archive-entry>.list-group:last-child li:last-child,
+.archive-entry>.header-menu:last-child li:last-child,
+.archive-entry>.panel-collapse>.list-group:last-child .list-group-item:last-child,
+.archive-entry>.panel-collapse>.header-menu:last-child .list-group-item:last-child,
+.archive-entry>.panel-collapse>.list-group:last-child .header-menu li:last-child,
+.header-menu .archive-entry>.panel-collapse>.list-group:last-child li:last-child,
+.archive-entry>.panel-collapse>.header-menu:last-child li:last-child {
+  border-bottom: 0;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.archive-entry>.panel-heading+.panel-collapse>.list-group .list-group-item:first-child,
+.hatena-module .archive-entry>.hatena-module-title+.panel-collapse>.list-group .list-group-item:first-child,
+.archive-entry>.entry-header+.panel-collapse>.list-group .list-group-item:first-child,
+.archive-entry>.panel-heading+.panel-collapse>.header-menu .list-group-item:first-child,
+.hatena-module .archive-entry>.hatena-module-title+.panel-collapse>.header-menu .list-group-item:first-child,
+.archive-entry>.entry-header+.panel-collapse>.header-menu .list-group-item:first-child,
+.archive-entry>.panel-heading+.panel-collapse>.list-group .header-menu li:first-child,
+.header-menu .archive-entry>.panel-heading+.panel-collapse>.list-group li:first-child,
+.header-menu .hatena-module .archive-entry>.hatena-module-title+.panel-collapse>.list-group li:first-child,
+.archive-entry>.entry-header+.panel-collapse>.list-group .header-menu li:first-child,
+.header-menu .archive-entry>.entry-header+.panel-collapse>.list-group li:first-child,
+.archive-entry>.panel-heading+.panel-collapse>.header-menu li:first-child,
+.hatena-module .archive-entry>.hatena-module-title+.panel-collapse>.header-menu li:first-child,
+.archive-entry>.entry-header+.panel-collapse>.header-menu li:first-child {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.archive-entry>.table,
+.entry-content .panel>table,
+.entry-content .hatena-module>table,
+.entry-content .entry-inner>table,
+.entry-content .archive-entry>table,
+.archive-entry>.table-responsive>.table,
+.entry-content .panel>.table-responsive>table,
+.entry-content .hatena-module>.table-responsive>table,
+.entry-content .entry-inner>.table-responsive>table,
+.entry-content .archive-entry>.table-responsive>table,
+.archive-entry>.panel-collapse>.table,
+.entry-content .panel>.panel-collapse>table,
+.entry-content .hatena-module>.panel-collapse>table,
+.entry-content .entry-inner>.panel-collapse>table,
+.entry-content .archive-entry>.panel-collapse>table {
+  margin-bottom: 0;
+}
+
+.archive-entry>.table caption,
 .entry-content .panel>table caption,
 .entry-content .hatena-module>table caption,
 .entry-content .entry-inner>table caption,
+.entry-content .archive-entry>table caption,
+.archive-entry>.table-responsive>.table caption,
 .entry-content .panel>.table-responsive>table caption,
 .entry-content .hatena-module>.table-responsive>table caption,
 .entry-content .entry-inner>.table-responsive>table caption,
+.entry-content .archive-entry>.table-responsive>table caption,
+.archive-entry>.panel-collapse>.table caption,
 .entry-content .panel>.panel-collapse>table caption,
 .entry-content .hatena-module>.panel-collapse>table caption,
-.entry-content .entry-inner>.panel-collapse>table caption {
+.entry-content .entry-inner>.panel-collapse>table caption,
+.entry-content .archive-entry>.panel-collapse>table caption {
   padding-left: 15px;
   padding-right: 15px;
 }
 
+.archive-entry>.table:first-child,
 .entry-content .panel>table:first-child,
 .entry-content .hatena-module>table:first-child,
 .entry-content .entry-inner>table:first-child,
+.entry-content .archive-entry>table:first-child,
+.archive-entry>.table-responsive:first-child>.table:first-child,
 .entry-content .panel>.table-responsive:first-child>table:first-child,
 .entry-content .hatena-module>.table-responsive:first-child>table:first-child,
-.entry-content .entry-inner>.table-responsive:first-child>table:first-child {
+.entry-content .entry-inner>.table-responsive:first-child>table:first-child,
+.entry-content .archive-entry>.table-responsive:first-child>table:first-child {
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
 }
 
+.archive-entry>.table:first-child>thead:first-child>tr:first-child,
 .entry-content .panel>table:first-child>thead:first-child>tr:first-child,
 .entry-content .hatena-module>table:first-child>thead:first-child>tr:first-child,
 .entry-content .entry-inner>table:first-child>thead:first-child>tr:first-child,
+.entry-content .archive-entry>table:first-child>thead:first-child>tr:first-child,
+.archive-entry>.table:first-child>tbody:first-child>tr:first-child,
 .entry-content .panel>table:first-child>tbody:first-child>tr:first-child,
 .entry-content .hatena-module>table:first-child>tbody:first-child>tr:first-child,
 .entry-content .entry-inner>table:first-child>tbody:first-child>tr:first-child,
+.entry-content .archive-entry>table:first-child>tbody:first-child>tr:first-child,
+.archive-entry>.table-responsive:first-child>.table:first-child>thead:first-child>tr:first-child,
 .entry-content .panel>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child,
 .entry-content .hatena-module>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child,
 .entry-content .entry-inner>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child,
+.entry-content .archive-entry>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child,
+.archive-entry>.table-responsive:first-child>.table:first-child>tbody:first-child>tr:first-child,
 .entry-content .panel>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child,
 .entry-content .hatena-module>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child,
-.entry-content .entry-inner>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child {
+.entry-content .entry-inner>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child,
+.entry-content .archive-entry>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
 
+.archive-entry>.table:first-child>thead:first-child>tr:first-child td:first-child,
 .entry-content .panel>table:first-child>thead:first-child>tr:first-child td:first-child,
 .entry-content .hatena-module>table:first-child>thead:first-child>tr:first-child td:first-child,
 .entry-content .entry-inner>table:first-child>thead:first-child>tr:first-child td:first-child,
+.entry-content .archive-entry>table:first-child>thead:first-child>tr:first-child td:first-child,
+.archive-entry>.table:first-child>thead:first-child>tr:first-child th:first-child,
 .entry-content .panel>table:first-child>thead:first-child>tr:first-child th:first-child,
 .entry-content .hatena-module>table:first-child>thead:first-child>tr:first-child th:first-child,
 .entry-content .entry-inner>table:first-child>thead:first-child>tr:first-child th:first-child,
+.entry-content .archive-entry>table:first-child>thead:first-child>tr:first-child th:first-child,
+.archive-entry>.table:first-child>tbody:first-child>tr:first-child td:first-child,
 .entry-content .panel>table:first-child>tbody:first-child>tr:first-child td:first-child,
 .entry-content .hatena-module>table:first-child>tbody:first-child>tr:first-child td:first-child,
 .entry-content .entry-inner>table:first-child>tbody:first-child>tr:first-child td:first-child,
+.entry-content .archive-entry>table:first-child>tbody:first-child>tr:first-child td:first-child,
+.archive-entry>.table:first-child>tbody:first-child>tr:first-child th:first-child,
 .entry-content .panel>table:first-child>tbody:first-child>tr:first-child th:first-child,
 .entry-content .hatena-module>table:first-child>tbody:first-child>tr:first-child th:first-child,
 .entry-content .entry-inner>table:first-child>tbody:first-child>tr:first-child th:first-child,
+.entry-content .archive-entry>table:first-child>tbody:first-child>tr:first-child th:first-child,
+.archive-entry>.table-responsive:first-child>.table:first-child>thead:first-child>tr:first-child td:first-child,
 .entry-content .panel>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child td:first-child,
 .entry-content .hatena-module>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child td:first-child,
 .entry-content .entry-inner>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child td:first-child,
+.entry-content .archive-entry>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child td:first-child,
+.archive-entry>.table-responsive:first-child>.table:first-child>thead:first-child>tr:first-child th:first-child,
 .entry-content .panel>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child th:first-child,
 .entry-content .hatena-module>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child th:first-child,
 .entry-content .entry-inner>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child th:first-child,
+.entry-content .archive-entry>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child th:first-child,
+.archive-entry>.table-responsive:first-child>.table:first-child>tbody:first-child>tr:first-child td:first-child,
 .entry-content .panel>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child td:first-child,
 .entry-content .hatena-module>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child td:first-child,
 .entry-content .entry-inner>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child td:first-child,
+.entry-content .archive-entry>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child td:first-child,
+.archive-entry>.table-responsive:first-child>.table:first-child>tbody:first-child>tr:first-child th:first-child,
 .entry-content .panel>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child th:first-child,
 .entry-content .hatena-module>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child th:first-child,
-.entry-content .entry-inner>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child th:first-child {
+.entry-content .entry-inner>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child th:first-child,
+.entry-content .archive-entry>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child th:first-child {
   border-top-left-radius: 3px;
 }
 
+.archive-entry>.table:first-child>thead:first-child>tr:first-child td:last-child,
 .entry-content .panel>table:first-child>thead:first-child>tr:first-child td:last-child,
 .entry-content .hatena-module>table:first-child>thead:first-child>tr:first-child td:last-child,
 .entry-content .entry-inner>table:first-child>thead:first-child>tr:first-child td:last-child,
+.entry-content .archive-entry>table:first-child>thead:first-child>tr:first-child td:last-child,
+.archive-entry>.table:first-child>thead:first-child>tr:first-child th:last-child,
 .entry-content .panel>table:first-child>thead:first-child>tr:first-child th:last-child,
 .entry-content .hatena-module>table:first-child>thead:first-child>tr:first-child th:last-child,
 .entry-content .entry-inner>table:first-child>thead:first-child>tr:first-child th:last-child,
+.entry-content .archive-entry>table:first-child>thead:first-child>tr:first-child th:last-child,
+.archive-entry>.table:first-child>tbody:first-child>tr:first-child td:last-child,
 .entry-content .panel>table:first-child>tbody:first-child>tr:first-child td:last-child,
 .entry-content .hatena-module>table:first-child>tbody:first-child>tr:first-child td:last-child,
 .entry-content .entry-inner>table:first-child>tbody:first-child>tr:first-child td:last-child,
+.entry-content .archive-entry>table:first-child>tbody:first-child>tr:first-child td:last-child,
+.archive-entry>.table:first-child>tbody:first-child>tr:first-child th:last-child,
 .entry-content .panel>table:first-child>tbody:first-child>tr:first-child th:last-child,
 .entry-content .hatena-module>table:first-child>tbody:first-child>tr:first-child th:last-child,
 .entry-content .entry-inner>table:first-child>tbody:first-child>tr:first-child th:last-child,
+.entry-content .archive-entry>table:first-child>tbody:first-child>tr:first-child th:last-child,
+.archive-entry>.table-responsive:first-child>.table:first-child>thead:first-child>tr:first-child td:last-child,
 .entry-content .panel>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child td:last-child,
 .entry-content .hatena-module>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child td:last-child,
 .entry-content .entry-inner>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child td:last-child,
+.entry-content .archive-entry>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child td:last-child,
+.archive-entry>.table-responsive:first-child>.table:first-child>thead:first-child>tr:first-child th:last-child,
 .entry-content .panel>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child th:last-child,
 .entry-content .hatena-module>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child th:last-child,
 .entry-content .entry-inner>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child th:last-child,
+.entry-content .archive-entry>.table-responsive:first-child>table:first-child>thead:first-child>tr:first-child th:last-child,
+.archive-entry>.table-responsive:first-child>.table:first-child>tbody:first-child>tr:first-child td:last-child,
 .entry-content .panel>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child td:last-child,
 .entry-content .hatena-module>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child td:last-child,
 .entry-content .entry-inner>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child td:last-child,
+.entry-content .archive-entry>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child td:last-child,
+.archive-entry>.table-responsive:first-child>.table:first-child>tbody:first-child>tr:first-child th:last-child,
 .entry-content .panel>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child th:last-child,
 .entry-content .hatena-module>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child th:last-child,
-.entry-content .entry-inner>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child th:last-child {
+.entry-content .entry-inner>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child th:last-child,
+.entry-content .archive-entry>.table-responsive:first-child>table:first-child>tbody:first-child>tr:first-child th:last-child {
   border-top-right-radius: 3px;
 }
 
+.archive-entry>.table:last-child,
 .entry-content .panel>table:last-child,
 .entry-content .hatena-module>table:last-child,
 .entry-content .entry-inner>table:last-child,
+.entry-content .archive-entry>table:last-child,
+.archive-entry>.table-responsive:last-child>.table:last-child,
 .entry-content .panel>.table-responsive:last-child>table:last-child,
 .entry-content .hatena-module>.table-responsive:last-child>table:last-child,
-.entry-content .entry-inner>.table-responsive:last-child>table:last-child {
+.entry-content .entry-inner>.table-responsive:last-child>table:last-child,
+.entry-content .archive-entry>.table-responsive:last-child>table:last-child {
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
 }
 
+.archive-entry>.table:last-child>tbody:last-child>tr:last-child,
 .entry-content .panel>table:last-child>tbody:last-child>tr:last-child,
 .entry-content .hatena-module>table:last-child>tbody:last-child>tr:last-child,
 .entry-content .entry-inner>table:last-child>tbody:last-child>tr:last-child,
+.entry-content .archive-entry>table:last-child>tbody:last-child>tr:last-child,
+.archive-entry>.table:last-child>tfoot:last-child>tr:last-child,
 .entry-content .panel>table:last-child>tfoot:last-child>tr:last-child,
 .entry-content .hatena-module>table:last-child>tfoot:last-child>tr:last-child,
 .entry-content .entry-inner>table:last-child>tfoot:last-child>tr:last-child,
+.entry-content .archive-entry>table:last-child>tfoot:last-child>tr:last-child,
+.archive-entry>.table-responsive:last-child>.table:last-child>tbody:last-child>tr:last-child,
 .entry-content .panel>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child,
 .entry-content .hatena-module>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child,
 .entry-content .entry-inner>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child,
+.entry-content .archive-entry>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child,
+.archive-entry>.table-responsive:last-child>.table:last-child>tfoot:last-child>tr:last-child,
 .entry-content .panel>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child,
 .entry-content .hatena-module>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child,
-.entry-content .entry-inner>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child {
+.entry-content .entry-inner>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child,
+.entry-content .archive-entry>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child {
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }
 
+.archive-entry>.table:last-child>tbody:last-child>tr:last-child td:first-child,
 .entry-content .panel>table:last-child>tbody:last-child>tr:last-child td:first-child,
 .entry-content .hatena-module>table:last-child>tbody:last-child>tr:last-child td:first-child,
 .entry-content .entry-inner>table:last-child>tbody:last-child>tr:last-child td:first-child,
+.entry-content .archive-entry>table:last-child>tbody:last-child>tr:last-child td:first-child,
+.archive-entry>.table:last-child>tbody:last-child>tr:last-child th:first-child,
 .entry-content .panel>table:last-child>tbody:last-child>tr:last-child th:first-child,
 .entry-content .hatena-module>table:last-child>tbody:last-child>tr:last-child th:first-child,
 .entry-content .entry-inner>table:last-child>tbody:last-child>tr:last-child th:first-child,
+.entry-content .archive-entry>table:last-child>tbody:last-child>tr:last-child th:first-child,
+.archive-entry>.table:last-child>tfoot:last-child>tr:last-child td:first-child,
 .entry-content .panel>table:last-child>tfoot:last-child>tr:last-child td:first-child,
 .entry-content .hatena-module>table:last-child>tfoot:last-child>tr:last-child td:first-child,
 .entry-content .entry-inner>table:last-child>tfoot:last-child>tr:last-child td:first-child,
+.entry-content .archive-entry>table:last-child>tfoot:last-child>tr:last-child td:first-child,
+.archive-entry>.table:last-child>tfoot:last-child>tr:last-child th:first-child,
 .entry-content .panel>table:last-child>tfoot:last-child>tr:last-child th:first-child,
 .entry-content .hatena-module>table:last-child>tfoot:last-child>tr:last-child th:first-child,
 .entry-content .entry-inner>table:last-child>tfoot:last-child>tr:last-child th:first-child,
+.entry-content .archive-entry>table:last-child>tfoot:last-child>tr:last-child th:first-child,
+.archive-entry>.table-responsive:last-child>.table:last-child>tbody:last-child>tr:last-child td:first-child,
 .entry-content .panel>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child td:first-child,
 .entry-content .hatena-module>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child td:first-child,
 .entry-content .entry-inner>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child td:first-child,
+.entry-content .archive-entry>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child td:first-child,
+.archive-entry>.table-responsive:last-child>.table:last-child>tbody:last-child>tr:last-child th:first-child,
 .entry-content .panel>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child th:first-child,
 .entry-content .hatena-module>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child th:first-child,
 .entry-content .entry-inner>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child th:first-child,
+.entry-content .archive-entry>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child th:first-child,
+.archive-entry>.table-responsive:last-child>.table:last-child>tfoot:last-child>tr:last-child td:first-child,
 .entry-content .panel>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child td:first-child,
 .entry-content .hatena-module>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child td:first-child,
 .entry-content .entry-inner>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child td:first-child,
+.entry-content .archive-entry>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child td:first-child,
+.archive-entry>.table-responsive:last-child>.table:last-child>tfoot:last-child>tr:last-child th:first-child,
 .entry-content .panel>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child th:first-child,
 .entry-content .hatena-module>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child th:first-child,
-.entry-content .entry-inner>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child th:first-child {
+.entry-content .entry-inner>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child th:first-child,
+.entry-content .archive-entry>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child th:first-child {
   border-bottom-left-radius: 3px;
 }
 
+.archive-entry>.table:last-child>tbody:last-child>tr:last-child td:last-child,
 .entry-content .panel>table:last-child>tbody:last-child>tr:last-child td:last-child,
 .entry-content .hatena-module>table:last-child>tbody:last-child>tr:last-child td:last-child,
 .entry-content .entry-inner>table:last-child>tbody:last-child>tr:last-child td:last-child,
+.entry-content .archive-entry>table:last-child>tbody:last-child>tr:last-child td:last-child,
+.archive-entry>.table:last-child>tbody:last-child>tr:last-child th:last-child,
 .entry-content .panel>table:last-child>tbody:last-child>tr:last-child th:last-child,
 .entry-content .hatena-module>table:last-child>tbody:last-child>tr:last-child th:last-child,
 .entry-content .entry-inner>table:last-child>tbody:last-child>tr:last-child th:last-child,
+.entry-content .archive-entry>table:last-child>tbody:last-child>tr:last-child th:last-child,
+.archive-entry>.table:last-child>tfoot:last-child>tr:last-child td:last-child,
 .entry-content .panel>table:last-child>tfoot:last-child>tr:last-child td:last-child,
 .entry-content .hatena-module>table:last-child>tfoot:last-child>tr:last-child td:last-child,
 .entry-content .entry-inner>table:last-child>tfoot:last-child>tr:last-child td:last-child,
+.entry-content .archive-entry>table:last-child>tfoot:last-child>tr:last-child td:last-child,
+.archive-entry>.table:last-child>tfoot:last-child>tr:last-child th:last-child,
 .entry-content .panel>table:last-child>tfoot:last-child>tr:last-child th:last-child,
 .entry-content .hatena-module>table:last-child>tfoot:last-child>tr:last-child th:last-child,
 .entry-content .entry-inner>table:last-child>tfoot:last-child>tr:last-child th:last-child,
+.entry-content .archive-entry>table:last-child>tfoot:last-child>tr:last-child th:last-child,
+.archive-entry>.table-responsive:last-child>.table:last-child>tbody:last-child>tr:last-child td:last-child,
 .entry-content .panel>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child td:last-child,
 .entry-content .hatena-module>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child td:last-child,
 .entry-content .entry-inner>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child td:last-child,
+.entry-content .archive-entry>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child td:last-child,
+.archive-entry>.table-responsive:last-child>.table:last-child>tbody:last-child>tr:last-child th:last-child,
 .entry-content .panel>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child th:last-child,
 .entry-content .hatena-module>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child th:last-child,
 .entry-content .entry-inner>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child th:last-child,
+.entry-content .archive-entry>.table-responsive:last-child>table:last-child>tbody:last-child>tr:last-child th:last-child,
+.archive-entry>.table-responsive:last-child>.table:last-child>tfoot:last-child>tr:last-child td:last-child,
 .entry-content .panel>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child td:last-child,
 .entry-content .hatena-module>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child td:last-child,
 .entry-content .entry-inner>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child td:last-child,
+.entry-content .archive-entry>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child td:last-child,
+.archive-entry>.table-responsive:last-child>.table:last-child>tfoot:last-child>tr:last-child th:last-child,
 .entry-content .panel>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child th:last-child,
 .entry-content .hatena-module>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child th:last-child,
-.entry-content .entry-inner>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child th:last-child {
+.entry-content .entry-inner>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child th:last-child,
+.entry-content .archive-entry>.table-responsive:last-child>table:last-child>tfoot:last-child>tr:last-child th:last-child {
   border-bottom-right-radius: 3px;
 }
 
+.archive-entry>.panel-body+.table,
+.hatena-module .archive-entry>.hatena-module-body+.table,
 .panel>.entry-content+.table,
 .hatena-module>.entry-content+.table,
 .entry-inner>.entry-content+.table,
+.archive-entry>.entry-content+.table,
 .entry-content .panel>.panel-body+table,
 .entry-content .hatena-module>.panel-body+table,
 .entry-content .entry-inner>.panel-body+table,
+.entry-content .archive-entry>.panel-body+table,
 .hatena-module .entry-content .panel>.hatena-module-body+table,
 .entry-content .hatena-module .panel>.hatena-module-body+table,
 .entry-content .hatena-module>.hatena-module-body+table,
 .hatena-module .entry-content .entry-inner>.hatena-module-body+table,
 .entry-content .hatena-module .entry-inner>.hatena-module-body+table,
+.hatena-module .entry-content .archive-entry>.hatena-module-body+table,
+.entry-content .hatena-module .archive-entry>.hatena-module-body+table,
 .entry-content .panel>.entry-content+table,
 .entry-content .hatena-module>.entry-content+table,
 .entry-content .entry-inner>.entry-content+table,
+.entry-content .archive-entry>.entry-content+table,
+.archive-entry>.panel-body+.table-responsive,
+.hatena-module .archive-entry>.hatena-module-body+.table-responsive,
 .panel>.entry-content+.table-responsive,
 .hatena-module>.entry-content+.table-responsive,
 .entry-inner>.entry-content+.table-responsive,
+.archive-entry>.entry-content+.table-responsive,
+.archive-entry>.table+.panel-body,
 .entry-content .panel>table+.panel-body,
 .entry-content .hatena-module>table+.panel-body,
 .entry-content .entry-inner>table+.panel-body,
+.entry-content .archive-entry>table+.panel-body,
+.hatena-module .archive-entry>.table+.hatena-module-body,
 .entry-content .hatena-module .panel>table+.hatena-module-body,
 .hatena-module .entry-content .panel>table+.hatena-module-body,
 .entry-content .hatena-module>table+.hatena-module-body,
 .entry-content .hatena-module .entry-inner>table+.hatena-module-body,
 .hatena-module .entry-content .entry-inner>table+.hatena-module-body,
+.entry-content .hatena-module .archive-entry>table+.hatena-module-body,
+.hatena-module .entry-content .archive-entry>table+.hatena-module-body,
 .panel>.table+.entry-content,
 .hatena-module>.table+.entry-content,
 .entry-inner>.table+.entry-content,
+.archive-entry>.table+.entry-content,
 .entry-content .panel>table+.entry-content,
 .entry-content .hatena-module>table+.entry-content,
 .entry-content .entry-inner>table+.entry-content,
+.entry-content .archive-entry>table+.entry-content,
+.archive-entry>.table-responsive+.panel-body,
+.hatena-module .archive-entry>.table-responsive+.hatena-module-body,
 .panel>.table-responsive+.entry-content,
 .hatena-module>.table-responsive+.entry-content,
-.entry-inner>.table-responsive+.entry-content {
+.entry-inner>.table-responsive+.entry-content,
+.archive-entry>.table-responsive+.entry-content {
   border-top: 1px solid #ddd;
 }
 
+.archive-entry>.table>tbody:first-child>tr:first-child th,
 .entry-content .panel>table>tbody:first-child>tr:first-child th,
 .entry-content .hatena-module>table>tbody:first-child>tr:first-child th,
 .entry-content .entry-inner>table>tbody:first-child>tr:first-child th,
+.entry-content .archive-entry>table>tbody:first-child>tr:first-child th,
+.archive-entry>.table>tbody:first-child>tr:first-child td,
 .entry-content .panel>table>tbody:first-child>tr:first-child td,
 .entry-content .hatena-module>table>tbody:first-child>tr:first-child td,
-.entry-content .entry-inner>table>tbody:first-child>tr:first-child td {
+.entry-content .entry-inner>table>tbody:first-child>tr:first-child td,
+.entry-content .archive-entry>table>tbody:first-child>tr:first-child td {
   border-top: 0;
+}
+
+.archive-entry>.table-bordered,
+.archive-entry>.table-responsive>.table-bordered {
+  border: 0;
+}
+
+.archive-entry>.table-bordered>thead>tr>th:first-child,
+.archive-entry>.table-bordered>thead>tr>td:first-child,
+.archive-entry>.table-bordered>tbody>tr>th:first-child,
+.archive-entry>.table-bordered>tbody>tr>td:first-child,
+.archive-entry>.table-bordered>tfoot>tr>th:first-child,
+.archive-entry>.table-bordered>tfoot>tr>td:first-child,
+.archive-entry>.table-responsive>.table-bordered>thead>tr>th:first-child,
+.archive-entry>.table-responsive>.table-bordered>thead>tr>td:first-child,
+.archive-entry>.table-responsive>.table-bordered>tbody>tr>th:first-child,
+.archive-entry>.table-responsive>.table-bordered>tbody>tr>td:first-child,
+.archive-entry>.table-responsive>.table-bordered>tfoot>tr>th:first-child,
+.archive-entry>.table-responsive>.table-bordered>tfoot>tr>td:first-child {
+  border-left: 0;
+}
+
+.archive-entry>.table-bordered>thead>tr>th:last-child,
+.archive-entry>.table-bordered>thead>tr>td:last-child,
+.archive-entry>.table-bordered>tbody>tr>th:last-child,
+.archive-entry>.table-bordered>tbody>tr>td:last-child,
+.archive-entry>.table-bordered>tfoot>tr>th:last-child,
+.archive-entry>.table-bordered>tfoot>tr>td:last-child,
+.archive-entry>.table-responsive>.table-bordered>thead>tr>th:last-child,
+.archive-entry>.table-responsive>.table-bordered>thead>tr>td:last-child,
+.archive-entry>.table-responsive>.table-bordered>tbody>tr>th:last-child,
+.archive-entry>.table-responsive>.table-bordered>tbody>tr>td:last-child,
+.archive-entry>.table-responsive>.table-bordered>tfoot>tr>th:last-child,
+.archive-entry>.table-responsive>.table-bordered>tfoot>tr>td:last-child {
+  border-right: 0;
+}
+
+.archive-entry>.table-bordered>thead>tr:first-child>td,
+.archive-entry>.table-bordered>thead>tr:first-child>th,
+.archive-entry>.table-bordered>tbody>tr:first-child>td,
+.archive-entry>.table-bordered>tbody>tr:first-child>th,
+.archive-entry>.table-responsive>.table-bordered>thead>tr:first-child>td,
+.archive-entry>.table-responsive>.table-bordered>thead>tr:first-child>th,
+.archive-entry>.table-responsive>.table-bordered>tbody>tr:first-child>td,
+.archive-entry>.table-responsive>.table-bordered>tbody>tr:first-child>th {
+  border-bottom: 0;
+}
+
+.archive-entry>.table-bordered>tbody>tr:last-child>td,
+.archive-entry>.table-bordered>tbody>tr:last-child>th,
+.archive-entry>.table-bordered>tfoot>tr:last-child>td,
+.archive-entry>.table-bordered>tfoot>tr:last-child>th,
+.archive-entry>.table-responsive>.table-bordered>tbody>tr:last-child>td,
+.archive-entry>.table-responsive>.table-bordered>tbody>tr:last-child>th,
+.archive-entry>.table-responsive>.table-bordered>tfoot>tr:last-child>td,
+.archive-entry>.table-responsive>.table-bordered>tfoot>tr:last-child>th {
+  border-bottom: 0;
+}
+
+.archive-entry>.table-responsive {
+  border: 0;
+  margin-bottom: 0;
+}
+
+.panel-group .archive-entry {
+  margin-bottom: 0;
+  border-radius: 4px;
+}
+
+.panel-group .archive-entry+.panel,
+.panel-group .archive-entry+.hatena-module,
+.panel-group .archive-entry+.entry-inner,
+.panel-group .panel+.archive-entry,
+.panel-group .hatena-module+.archive-entry,
+.panel-group .entry-inner+.archive-entry,
+.panel-group .archive-entry+.archive-entry {
+  margin-top: 5px;
 }
 
 .panel-group .panel-heading+.panel-collapse>.entry-content,
@@ -1230,35 +1516,61 @@ a.hatena-bookmark-count:focus {
 }
 
 .hatena-module,
-.entry-inner {
+.entry-inner,
+.archive-entry {
   border-color: #ddd;
 }
 
+.archive-entry>.panel-heading,
 .hatena-module>.hatena-module-title,
-.entry-inner>.entry-header {
+.hatena-module .archive-entry>.hatena-module-title,
+.entry-inner>.entry-header,
+.archive-entry>.entry-header {
   color: #333;
   background-color: #f5f5f5;
   border-color: #ddd;
 }
 
+.archive-entry>.panel-heading+.panel-collapse>.panel-body,
+.hatena-module .archive-entry>.hatena-module-title+.panel-collapse>.panel-body,
+.archive-entry>.entry-header+.panel-collapse>.panel-body,
+.hatena-module .archive-entry>.panel-heading+.panel-collapse>.hatena-module-body,
+.hatena-module .archive-entry>.hatena-module-title+.panel-collapse>.hatena-module-body,
+.hatena-module .archive-entry>.entry-header+.panel-collapse>.hatena-module-body,
 .panel-default>.panel-heading+.panel-collapse>.entry-content,
 .hatena-module>.panel-heading+.panel-collapse>.entry-content,
 .entry-inner>.panel-heading+.panel-collapse>.entry-content,
+.archive-entry>.panel-heading+.panel-collapse>.entry-content,
 .hatena-module .panel-default>.hatena-module-title+.panel-collapse>.entry-content,
 .hatena-module>.hatena-module-title+.panel-collapse>.entry-content,
 .hatena-module .entry-inner>.hatena-module-title+.panel-collapse>.entry-content,
+.hatena-module .archive-entry>.hatena-module-title+.panel-collapse>.entry-content,
 .panel-default>.entry-header+.panel-collapse>.entry-content,
 .hatena-module>.entry-header+.panel-collapse>.entry-content,
-.entry-inner>.entry-header+.panel-collapse>.entry-content {
+.entry-inner>.entry-header+.panel-collapse>.entry-content,
+.archive-entry>.entry-header+.panel-collapse>.entry-content {
   border-top-color: #ddd;
 }
 
+.archive-entry>.panel-heading .badge,
+.hatena-module .archive-entry>.hatena-module-title .badge,
+.archive-entry>.entry-header .badge {
+  color: #f5f5f5;
+  background-color: #333;
+}
+
+.archive-entry>.panel-footer+.panel-collapse>.panel-body,
+.archive-entry>.entry-footer+.panel-collapse>.panel-body,
+.hatena-module .archive-entry>.panel-footer+.panel-collapse>.hatena-module-body,
+.hatena-module .archive-entry>.entry-footer+.panel-collapse>.hatena-module-body,
 .panel-default>.panel-footer+.panel-collapse>.entry-content,
 .hatena-module>.panel-footer+.panel-collapse>.entry-content,
 .entry-inner>.panel-footer+.panel-collapse>.entry-content,
+.archive-entry>.panel-footer+.panel-collapse>.entry-content,
 .panel-default>.entry-footer+.panel-collapse>.entry-content,
 .hatena-module>.entry-footer+.panel-collapse>.entry-content,
-.entry-inner>.entry-footer+.panel-collapse>.entry-content {
+.entry-inner>.entry-footer+.panel-collapse>.entry-content,
+.archive-entry>.entry-footer+.panel-collapse>.entry-content {
   border-bottom-color: #ddd;
 }
 
@@ -1401,10 +1713,6 @@ body {
   left: -45px;
 }
 
-.entry-header .date a {
-  color: #fff;
-}
-
 .search-module-input {
   line-height: 25px;
 }
@@ -1413,11 +1721,47 @@ body {
   color: #fff;
 }
 
-#footer {
+.page-about .entry-content {
+  font-size: 1.5em;
+}
+
+.page-about .entry-content dl {
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  margin-left: 15px;
+  margin-right: 15px;
+  background: #eee;
+}
+
+.page-about .entry-content dl dt {
+  vertical-align: middle;
+  padding: 20px;
+  border-top: 1px solid #ccc;
+}
+
+.page-about .entry-content dl dd {
+  line-height: 71px;
+  padding-left: 20px;
+  background: #fff;
+  vertical-align: middle;
+  margin: 0;
+  padding-left: 20px;
+  border-top: 1px solid #ccc;
+}
+
+.page-about .entry-content dl dd:after {
   clear: both;
-  text-align: center;
-  padding: 10px;
-  font-size: 80%;
+}
+
+@media (min-width: 768px) {
+  .page-about .entry-content dl dt {
+    width: 190px;
+  }
+
+  .page-about .entry-content dl dd {
+    margin-left: 190px;
+  }
 }
 
 /*# sourceMappingURL=blog.css.map */

@@ -16,7 +16,7 @@ var gruntConfig = {
       options: {
         ignore: [/entry-content/, /page-archive/, /page-about/, /#zenback/,
           /blog-description/, /entry-see-more/, /hatena-bookmark-count/, /search-module-input/, 
-          /search-module-button/, /comment-user-id/, /hatena-id-link/],
+          /search-module-button/, /comment-user-id/, /hatena-id-link/, /archive-entry/],
         stylesheets: ['blog.css']
       },
       files: {
@@ -31,7 +31,7 @@ var gruntConfig = {
     },
     target: {
       files: {
-        'blog.min.css' : ['blog.css', 'header.css']
+        'blog.min.css' : ['blog.css', 'header.css', 'archive.css']
       }
     }
   }
